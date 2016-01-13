@@ -120,6 +120,9 @@ function GM_configInit(config, args) {
   // Set the title
   if (settings.title) config.title = settings.title;
 
+  // Set the basic css
+  if (settings.full_css) config.css.basic = settings.full_css;
+
   // Set the custom css
   if (settings.css) config.css.stylish = settings.css;
 
