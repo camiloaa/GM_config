@@ -272,11 +272,6 @@ GM_configStruct.prototype = {
       config.center(); // Show and center iframe
       window.addEventListener('resize', config.center, false); // Center frame on resize
 
-      // Call the open() callback function
-      config.onOpen(config.frame.contentDocument || config.frame.ownerDocument,
-                    config.frame.contentWindow || window,
-                    config.frame);
-
       // Close frame on window close
       window.addEventListener('beforeunload', function () {
           config.close();
@@ -315,6 +310,11 @@ GM_configStruct.prototype = {
           buildConfigWin(body, frame.contentDocument.getElementsByTagName('head')[0]);
       }, false);
     }
+
+      // Call the open() callback function
+      config.onOpen(config.frame.contentDocument || config.frame.ownerDocument,
+                    config.frame.contentWindow || window,
+                    config.frame);
   },
 
   save: function () {
