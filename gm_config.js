@@ -777,8 +777,9 @@ GM_configField.prototype = {
     var wrapper = this.wrapper;
     if (wrapper) {
       var fieldParent = wrapper.parentNode;
-      fieldParent.insertBefore((this.wrapper = this.toNode()), wrapper);
-      this.remove(wrapper);
+      this.wrapper = this.toNode();
+      fieldParent.insertBefore(this.wrapper, wrapper);
+      fieldParent.removeChild(wrapper);
     }
   },
 
