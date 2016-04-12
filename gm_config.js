@@ -311,10 +311,10 @@ GM_configStruct.prototype = {
       }, false);
     }
 
-      // Call the open() callback function
-      config.onOpen(config.frame.contentDocument || config.frame.ownerDocument,
-                    config.frame.contentWindow || window,
-                    config.frame);
+    // Call the open() callback function
+    config.onOpen(config.frame.contentDocument || config.frame.ownerDocument,
+                  config.frame.contentWindow || window,
+                  config.frame);
   },
 
   save: function () {
@@ -623,9 +623,14 @@ GM_configField.prototype = {
         retNode.appendChild(wrap);
         break;
       case 'select':
-        var wrap = create('select', {
-          id: configId + '_field_' + id
-        });
+        var props = {
+          id: configId + '_field_' + id,
+        };
+        if (field.change) {
+          props.onchange = field.change;
+        }
+
+        var wrap = create('select', props);
         this.node = wrap;
 
         for (var i = 0, len = options.length; i < len; ++i) {
